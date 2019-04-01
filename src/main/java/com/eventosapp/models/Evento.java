@@ -1,10 +1,10 @@
 package com.eventosapp.models;
 
 import java.io.Serializable;
-
+import java.util.List;
 import javax.persistence.*;
-
 import javassist.SerialVersionUID;
+import javax.validation.constraints.NotEmpty;
 
 @Entity 
 public class Evento  implements Serializable{
@@ -13,12 +13,19 @@ public class Evento  implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	public long codigo;
+	private long codigo;
 	
-	public String nome;
-	public String local;
-	public String data;
-	public String horario;
+	@NotEmpty
+	private String nome;
+	@NotEmpty
+	private String local;
+	@NotEmpty
+	private String data;
+	@NotEmpty
+	private String horario;
+	
+	@OneToMany
+	private List<Convidado> convidados;
 	
 	
 	public long getCodigo() {
